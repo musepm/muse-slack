@@ -1,4 +1,4 @@
-let rlp = require('readlinr-prompter');
+let rlp = require('readline-prompter');
 
 let su = `
 
