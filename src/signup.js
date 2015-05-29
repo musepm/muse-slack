@@ -3,12 +3,13 @@
 module.exports = {
   signup() {
     let su = `
-Please visit https://slack.com/signup
+Please visit https://slack.com to sign up.
 After signing up, click the activation link in the email.
+Follow the instructions to create a team.
 
-Then visit https://slack.com/settings/tokens
+Then create a new bot integration at https://my.slack.com/services/new/bot
 
-Copy and paste your API token here`
+Copy and paste your token here`
    
     console.log(su);
   }
