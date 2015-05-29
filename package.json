@@ -1,17 +1,19 @@
 {
-  "name": "muse-slack",
+  "name": "musepm-slack",
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "build": "babel --stage 1 -d lib src",
+    "build": "babel --optional runtime --stage 1 -d lib src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jason Livesay",
   "license": "ISC",
   "dependencies": {
-    "muse": "git://github.com/runvnc/muse",
-    "readline-prompter": "^0.2.0",
+    "babel-runtime": "^5.4.7",
+    "es6-promisify": "^1.1.1",
+    "musepm": "",
+    "prompt": "^0.2.14",
     "slack-client": "^1.4.0"
   },
   "devDependencies": {

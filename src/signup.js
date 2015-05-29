@@ -1,8 +1,10 @@
-#!/usr/bin/env node
+let prompt = require('prompt'),
+    pr = require('es6-promisify'),
+    promptGet = pr(prompt.get),
+    credentials = require('muse-credentials');
 
-let rlp = require('readline-prompter');
-
-let su = `
+async f => {
+  let su = `
 
 ---------------------------------------------------------------
 
@@ -14,12 +16,13 @@ Then create a new bot integration at https://my.slack.com/services/new/bot
 
 Copy and paste your token below:
 `
-console.log(su);
+  console.log(su);
 
-rlp(['Token'], {}, {}).end( results => {
+  prompt.message = '>'.green;
+  prompt.start();
+  let results = await promptGet(['Token']);
 
-  require('muse').newCredentials(
-    {  'slack': { 'token': results.token } }
-  );
+  let data = {  'slack': { 'token': results.Token } };
+  await credentials.newCredentials(data);
+}();
 
-});
