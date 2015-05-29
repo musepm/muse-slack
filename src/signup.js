@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 let rlp = require('readline-prompter');
 
 let su = `
