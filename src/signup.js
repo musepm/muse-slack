@@ -1,3 +1,4 @@
+let rlp = require('readlinr-prompter');
 
 let su = `
 
@@ -13,7 +14,7 @@ Copy and paste your token below:
 `
 console.log(su);
 
-require('readline-prompter')(['Token'], {}, {}, results => {
+rlp(['Token'], {}, {}).end( results => {
 
   require('muse').newCredentials(
     {  'slack': { 'token': results.token } }
