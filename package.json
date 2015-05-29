@@ -2,6 +2,7 @@
   "name": "muse-slack",
   "version": "1.0.0",
   "description": "",
+  "bin": { "signup": "./bin/signup.js" },
   "main": "lib/index.js",
   "scripts": {
     "build": "babel --stage 1 -d lib src; babel --stage 1 -d bin src/bin",
