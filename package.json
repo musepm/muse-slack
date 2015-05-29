@@ -4,7 +4,7 @@
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "build": "babel --stage 1 -d lib src",
+    "build": "babel --stage 1 -d lib src; babel --stage 1 -d bin src/bin",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jason Livesay",
