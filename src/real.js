@@ -36,4 +36,8 @@ class Slack extends musepm.Api {
     });
   }
 
+  send(channel, text) {
+    this.slack.getChannelByName.send(text);
+  }
+
 }
