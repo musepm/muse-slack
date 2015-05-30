@@ -1,6 +1,6 @@
 {
   "name": "musepm-slack",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -12,7 +12,7 @@
   "dependencies": {
     "babel-runtime": "^5.4.7",
     "es6-promisify": "^1.1.1",
-    "musepm": "",
+    "musepm-credentials": "",
     "prompt": "^0.2.14",
     "slack-client": "^1.4.0"
   },

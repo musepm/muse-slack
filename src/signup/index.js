@@ -1,7 +1,7 @@
 let prompt = require('prompt'),
     pr = require('es6-promisify'),
     promptGet = pr(prompt.get),
-    credentials = require('muse-credentials');
+    credentials = require('musepm-credentials');
 
 async f => {
   let su = `
