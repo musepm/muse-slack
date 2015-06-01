@@ -1,4 +1,8 @@
-var muse = require('muse');
+var muse = require('musepm');
 
-module.exports = muse.doRequire('slack');
+if (muse.mocking) {
+  module.exports = require('./mock');
+} else {
+  module.exports = require('./real');
+}
 

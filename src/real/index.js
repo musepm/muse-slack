@@ -1,23 +1,37 @@
 var musepm = require('musepm'),
-    pr = rewuire('es6-promisify'),
+    pr = require('es6-promisify'),
     credentials = require('musepm-credentials'),
-    Slack = require('slack-client');
+    SlackClient = require('slack-client');
 
 class Slack extends musepm.Api {
 
   constructor(botname) {
+    console.log('hi');
+    return;
+
+    super(botname);
+
     this.botname = botname;
-    let tokens = await credentials.getAll('slack');
-    this.slack = new Slack(tokens[botname], true, true);
+    console.log('get creds');
+    credentials.getAll('slack')
+    .then( tokens => {
+      console.log('tokens is', tokens);
+      this.slack = new SlackClient(tokens[botname], true, true);
 
-    this.slack.on('error', err => {
-      console.error("Error: " + err);
+      this.slack.on('error', err => {
+        console.error("Error: " + err);
+      });
+
+      this.slack.login();
     });
+  }
 
-    this.slack.login();
+  async ready() {
+    return new Promise( res => {
+      this.slack.on('open', res);
+    });
+  }
 
-    await pr(this.slack.on)('open');
-  };
 
   onMsg(fn) {
     this.slack.on('message', message => {
@@ -41,3 +55,7 @@ class Slack extends musepm.Api {
   }
 
 }
+
+
+module.exports = Slack;
+
