@@ -1,16 +1,12 @@
 var muse = require('musepm'),
-    sinon = require('sinon');
+    SlackClient = require('node-slack-client'),
+    credentials = require('musepm-credentials');
 
 module.exports = {
-  make(cfg) {
-    var Real = require('./real');
-    if (muse.mocking) {
-      Real.prototype.constructor = f => {};
-      var obj = new Real(cfg);
-      return sinon.stub(obj);
-    } else {
-      return new Real(cfg);
-    }
+  async signon(cfg) {
+    let creds = await credentials.getAll();
+    var slack = new SlackClient(creds[cfg], true, true);
+    return slack;
   }
 }
 
