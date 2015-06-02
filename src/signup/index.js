@@ -24,6 +24,7 @@ Copy and paste your token below:
   let results = await promptGet(['Bot name', 'Token']);
    
   let data = {  'slack': {}};
+  console.log(data);
   data.slack[results['Bot name']] = results.token;
   await credentials.newCredentials(data);
 }();
