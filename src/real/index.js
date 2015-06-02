@@ -6,29 +6,27 @@ var musepm = require('musepm'),
 class Slack extends musepm.Api {
 
   constructor(botname) {
-    console.log('hi');
-    return;
-
     super(botname);
 
     this.botname = botname;
-    console.log('get creds');
+    var self = this;
     credentials.getAll('slack')
     .then( tokens => {
-      console.log('tokens is', tokens);
-      this.slack = new SlackClient(tokens[botname], true, true);
+      self.slack = new SlackClient(tokens[botname], true, true);
 
-      this.slack.on('error', err => {
-        console.error("Error: " + err);
+      self.slack.on('open', m => {
+        self.emit('ready', {});
       });
 
-      this.slack.login();
-    });
-  }
-
-  async ready() {
-    return new Promise( res => {
-      this.slack.on('open', res);
+      self.slack.on('error', err => {
+        console.error("Error: " + err);
+      });
+      
+      self.slack.on('raw_message', msg => {
+        console.log('raw message slack: ', msg);  
+      });  
+      
+      self.slack.login();      
     });
   }
 
@@ -51,11 +49,9 @@ class Slack extends musepm.Api {
   }
 
   send(channel, text) {
-    this.slack.getChannelByName.send(text);
+    this.slack.getChannelByName(channel).send(text);
   }
 
 }
 
-
 module.exports = Slack;
-

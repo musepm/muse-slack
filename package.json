@@ -1,11 +1,11 @@
 {
   "name": "musepm-slack",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
     "build": "babel --optional runtime --stage 1 -d lib src",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -R spec -t 5500 lib/test"
   },
   "author": "Jason Livesay",
   "license": "ISC",
@@ -14,6 +14,7 @@
     "es6-promisify": "^1.1.1",
     "musepm-credentials": "",
     "prompt": "^0.2.14",
+    "sinon": "^1.14.1",
     "slack-client": "^1.4.0"
   },
   "devDependencies": {

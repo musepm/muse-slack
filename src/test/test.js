@@ -1,17 +1,16 @@
 var assert = require('assert'),
-    Slack = require('../index');
+    muse = require('musepm'),
+    slack = require('../index');
 
 describe('Slack' ,() => {
   describe('#send', ()=> {
 
     it('should send a message', dn => {
-      console.log('top');
-      let chat = new Slack('testbot01');
-      dn();
-      return; /*
-      await chat.ready();
-      chat.send('general', 'Testing');*/
-    }); 
-
+      let chat = slack.make('testbot01');
+      chat.on('ready', f => {
+        chat.send('general', 'Testing 4545');
+        dn();
+      });
+    });
   });
 });

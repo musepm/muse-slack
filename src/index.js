@@ -1,8 +1,16 @@
-var muse = require('musepm');
+var muse = require('musepm'),
+    sinon = require('sinon');
 
-if (muse.mocking) {
-  module.exports = require('./mock');
-} else {
-  module.exports = require('./real');
+module.exports = {
+  make(cfg) {
+    var Real = require('./real');
+    if (muse.mocking) {
+      Real.prototype.constructor = f => {};
+      var obj = new Real(cfg);
+      return sinon.stub(obj);
+    } else {
+      return new Real(cfg);
+    }
+  }
 }
 
