@@ -6,7 +6,7 @@ describe('Slack' ,() => {
   describe('#send', ()=> {
 
     it('should send a message', dn => {
-      let chat = slack.make('testbot01');
+      let chat = slack.make('testbot03');
       chat.on('ready', f => {
         chat.send('general', 'Testing 4545');
         dn();
