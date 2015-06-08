@@ -1,5 +1,4 @@
-var muse = require('musepm'),
-    SlackClient = require('slack-client'),
+var SlackClient = require('slack-client'),
     credentials = require('musepm-credentials');
 
 module.exports = {
