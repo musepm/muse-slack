@@ -7,7 +7,7 @@ let prompt = require('prompt'),
     promptGet = pr(prompt.get),
     credentials = require('musepm-credentials');
 
-async f => {
+async function go() {
 
   var email = '';
 
@@ -65,4 +65,9 @@ Do you have a Slack account?
     });
   });
 
-}()
+}
+
+go().then(r => {
+  console.log('Done');
+});
+
