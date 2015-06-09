@@ -34,12 +34,12 @@ Do you have a Slack account?
     } catch (e2) {
       console.log(e2); 
     }
-    email = ans2.email;    
-    await new Promise( (res) => {
+    email = ans2.email; /*
+    let x = await new Promise( (res) => {
      exec(`casperjs newacct ${email} ${ans2.Company}`, (code, o) => { 
        res();
      });
-   });
+   }); */
     
    console.log(` 
    Please click the button in the email from Slack
@@ -56,7 +56,7 @@ Do you have a Slack account?
   prompts.push('teamdomain', 'password', 'botname');
   let info = await promptGet(prompts);
 
-  await new Promise( (res) => {
+  let n = await new Promise( (res) => {
     let opts = {async:true, silent:false};
     exec(`casperjs newbot ${info.teamdomain} ${info.email} ${info.password} ${info.botname}`, opts, (code, o) => {
       var token = o.split('|')[1];
@@ -66,7 +66,7 @@ Do you have a Slack account?
       res();
     });
   });
-
+  console.log('k');
 }
 
 go().then(r => {
