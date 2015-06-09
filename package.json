@@ -15,6 +15,7 @@
     "es6-promisify": "^1.1.1",
     "musepm-credentials": "^1.0.5",
     "prompt": "^0.2.14",
+    "shelljs": "^0.5.1",
     "sinon": "^1.14.1"
   },
   "peerDependencies": {
