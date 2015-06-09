@@ -24,8 +24,9 @@ Do you have a Slack account?
   console.log(su);
 
   let answer = await promptGet(['yn']);
-
+  console.log(answer);
   if (answer.yn == 'n') {
+    console.log('kkoii');
     let ans2 = await promptGet(['Email', 'Company']);
     email = ans2.email;    
     await new Promise( (res) => {
@@ -40,7 +41,7 @@ Do you have a Slack account?
    a Slack team. Then return to this terminal window.
    `); 
   }
-
+  console.log('uu');
   if (email == '') { 
     var prompts = ['email'];
   } else {
@@ -59,4 +60,5 @@ Do you have a Slack account?
       res();
     });
   });
+
 }()
