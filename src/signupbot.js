@@ -1,4 +1,5 @@
 var casper = require('casper').create();
+require("babel").transform("code", { optional: ["runtime"] });
 
 let prompt = require('prompt'),
     pr = require('es6-promisify'),

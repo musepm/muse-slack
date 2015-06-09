@@ -10,6 +10,7 @@
   "author": "Jason Livesay",
   "license": "ISC",
   "dependencies": {
+    "babel": "^5.4.7",
     "babel-runtime": "^5.4.7",
     "es6-promisify": "^1.1.1",
     "musepm-credentials": "^1.0.5",
