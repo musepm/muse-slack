@@ -1,29 +1,63 @@
+require("babel").transform("code", { optional: ["runtime"] });
+
+require('shrlljs/global');
+
 let prompt = require('prompt'),
     pr = require('es6-promisify'),
     promptGet = pr(prompt.get),
     credentials = require('musepm-credentials');
 
 async f => {
-  let su = `
 
----------------------------------------------------------------
-
-Please visit https://slack.com to sign up.
-After signing up, click the activation link in the email.
-Follow the instructions to create a team.
-
-Then create a new bot integration at https://my.slack.com/services/new/bot
-
-Copy and paste your token below:
-`
-  console.log(su);
+  var email = '';
 
   prompt.message = '>'.green;
   prompt.start();
  
-  let results = await promptGet(['Bot name', 'Token']);
-  let data = {  'slack': {}};
-  data.slack[results['Bot name']] = results.Token;
-  await credentials.newCredentials(data);
-}();
+  let su = `
 
+---------------------------------------------------------------
+
+Do you have a Slack account?
+
+`
+  console.log(su);
+
+  let answer = await promptGet(['yn']);
+
+  if (answer.yn == 'n') {
+    let ans2 = await promptGet(['Email', 'Company']);
+    email = ans2.email;    
+    await new Promise( (res) => {
+     exec(`casperjs newacct ${email} ${ans2.Company}`, (code, o) = { 
+       res();
+     });
+   });
+    
+   console.log(` 
+   Please click the button in the email from Slack
+   and fill out the form in the browser to create 
+   a Slack team. Then return to this terminal window.
+   `); 
+  }
+
+  if (email == '') { 
+    var prompts = ['email'];
+  } else {
+    var prompts = [];
+  }
+  prompts.push('teamdomain', 'password', 'botname');
+  let info = await promptGet(prompts);
+
+  await new Promise( (res) => {
+   opts = {async:true, silent:false});
+   exec(`casperjs newbot ${info.teamdomain} ${info.email} ${info.password} ${info.botname}`, opts, (code, o) => {
+     var token = o.split('|')[1];
+     var slack = { slack: { } };
+     slack.slack[info.botname] = token;
+     credentials.newCredentials(slack);
+     res();
+   });
+
+  });
+}()
