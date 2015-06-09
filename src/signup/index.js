@@ -31,7 +31,11 @@ Do you have a Slack account?
   console.log(answer);
   if (answer.yn == 'n') {
     console.log('kkoii');
-    let ans2 = await promptGet(['Email', 'Company']);
+    try {
+      let ans2 = await promptGet(['Email', 'Company']);
+    } catch (e2) {
+      console.log(e2); 
+    }
     email = ans2.email;    
     await new Promise( (res) => {
      exec(`casperjs newacct ${email} ${ans2.Company}`, (code, o) => { 
