@@ -22,7 +22,10 @@ Do you have a Slack account?
   console.log(su);
 
   try {
-    let answer = await promptGet(['yn']);
+    //let answer = await promptGet(['yn']);
+    promptGet(['yn']).then(function(xx) {
+     console.log(xx);
+    });
   } catch(e) {
     console.error(e);
   }
