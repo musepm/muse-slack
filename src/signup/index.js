@@ -1,5 +1,3 @@
-require("babel").transform("code", { optional: ["runtime"] });
-
 require('shelljs/global');
 
 let prompt = require('prompt'),
