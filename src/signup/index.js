@@ -29,7 +29,7 @@ Do you have a Slack account?
     let ans2 = await promptGet(['Email', 'Company']);
     email = ans2.email;    
     await new Promise( (res) => {
-     exec(`casperjs newacct ${email} ${ans2.Company}`, (code, o) = { 
+     exec(`casperjs newacct ${email} ${ans2.Company}`, (code, o) => { 
        res();
      });
    });
@@ -50,14 +50,13 @@ Do you have a Slack account?
   let info = await promptGet(prompts);
 
   await new Promise( (res) => {
-   opts = {async:true, silent:false});
-   exec(`casperjs newbot ${info.teamdomain} ${info.email} ${info.password} ${info.botname}`, opts, (code, o) => {
-     var token = o.split('|')[1];
-     var slack = { slack: { } };
-     slack.slack[info.botname] = token;
-     credentials.newCredentials(slack);
-     res();
-   });
-
+    let opts = {async:true, silent:false};
+    exec(`casperjs newbot ${info.teamdomain} ${info.email} ${info.password} ${info.botname}`, opts, (code, o) => {
+      var token = o.split('|')[1];
+      var slack = { slack: { } };
+      slack.slack[info.botname] = token;
+      credentials.newCredentials(slack);
+      res();
+    });
   });
 }()
