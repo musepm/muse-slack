@@ -1,6 +1,6 @@
 require("babel").transform("code", { optional: ["runtime"] });
 
-require('shrlljs/global');
+require('shelljs/global');
 
 let prompt = require('prompt'),
     pr = require('es6-promisify'),
