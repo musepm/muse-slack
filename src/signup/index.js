@@ -23,7 +23,11 @@ Do you have a Slack account?
 `
   console.log(su);
 
-  let answer = await promptGet(['yn']);
+  try {
+    let answer = await promptGet(['yn']);
+  } catch(e) {
+    console.error(e);
+  }
   console.log(answer);
   if (answer.yn == 'n') {
     console.log('kkoii');
