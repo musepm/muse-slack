@@ -66,7 +66,10 @@ Do you have a Slack account?
   console.log('k');
 }
 
-go().then(r => {
-  console.log('Done');
-});
-
+try {
+  go().then(r => {
+    console.log('Done');
+  });
+} catch(e) {
+  console.error(e);
+}
