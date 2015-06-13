@@ -4,7 +4,7 @@
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "build": "babel --optional runtime --stage 1 -d lib src",
+    "build": "babel --stage 1 -d lib src",
     "test": "mocha -R spec -t 5500 lib/test"
   },
   "author": "Jason Livesay",
