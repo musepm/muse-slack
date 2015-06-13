@@ -63,7 +63,6 @@ Do you have a Slack account?
       res();
     });
   });
-  console.log('k');
 }
 
 try {
