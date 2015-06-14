@@ -30,10 +30,6 @@ casper.wait(1000, function() {
 });
 
 casper.then(function() {
-  this.click('#form_overlay input[type=submit]');  
-});
-
-casper.then(function() {
   this.capture('img4.png'); 
 });
 
