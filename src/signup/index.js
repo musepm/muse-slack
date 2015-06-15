@@ -45,6 +45,7 @@ Do you have a Slack account?
    a Slack team. Then return to this terminal window.
    `); 
   }
+
   if (email == '') { 
     var prompts = ['email'];
   } else {
@@ -52,7 +53,7 @@ Do you have a Slack account?
   }
   prompts.push('teamdomain', 'password', 'botname');
   let info = await promptGet(prompts);
-
+  if (info.email) email = info.email;
   let n = await new Promise( (res) => {
     let opts = {async:true, silent:false};
     exec(`casperjs ${__dirname}/newbot.js ${info.teamdomain} ${email} ${info.password} ${info.botname}`, opts, (code, o) => {
