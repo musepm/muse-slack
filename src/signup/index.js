@@ -55,7 +55,7 @@ Do you have a Slack account?
 
   let n = await new Promise( (res) => {
     let opts = {async:true, silent:false};
-    exec(`casperjs ${__dirname}/newbot.js ${info.teamdomain} ${info.email} ${info.password} ${info.botname}`, opts, (code, o) => {
+    exec(`casperjs ${__dirname}/newbot.js ${info.teamdomain} ${email} ${info.password} ${info.botname}`, opts, (code, o) => {
       var token = o.split('|')[1];
       var slack = { slack: { } };
       slack.slack[info.botname] = token;
