@@ -1,6 +1,6 @@
 var SlackClient = require('slack-client'),
     credentials = require('musepm-credentials'),
-    Channel = require('slack-client/src/Channel');
+    Channel = require('slack-client/src/channel');
 
 module.exports = {
   async signon(cfg) {
