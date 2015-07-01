@@ -1,13 +1,11 @@
 var SlackClient = require('slack-client'),
     credentials = require('musepm-credentials'),
-    Channel = require('slack-client/src/Channel'),
-    monitor = require('musepm-monitor');
-
-monitor.logCalls('slack','send','Channel.prototype.send'
+    Channel = require('slack-client/src/Channel');
 
 module.exports = {
   async signon(cfg) {
-    try { 
+    try {
+      var monitor = require('musepm-monitor')(cfg);
       var cls = Channel.prototype; 
       cls.send = monitor.logCalls('slack','send', cls.send);
       var creds = await credentials.getAll('slack');
@@ -15,6 +13,9 @@ module.exports = {
     } catch (e) {
       console.error(e);
     }
+    slack.on('error', function(e) {
+     console.log(e);
+    });
     slack.login();
     return slack;
   }
