@@ -4,5 +4,4 @@ require('musepm').signon('slack','hibot2')
     var channel = slack.getChannelByName('general');
     channel.send('Testing abc');
    });
-   
  });

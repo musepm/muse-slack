@@ -5,10 +5,11 @@ var SlackClient = require('slack-client'),
 module.exports = {
   async signon(cfg) {
     try {
-      var monitor = require('musepm-monitor')(cfg);
+      var main = await credentials.getAll('main');
+      var creds = await credentials.getAll('slack');
+      var monitor = require('musepm-monitor')(main.accountid, cfg);
       var cls = Channel.prototype; 
       cls.send = monitor.logCalls('slack','send', cls.send);
-      var creds = await credentials.getAll('slack');
       var slack = new SlackClient(creds[cfg], true, true);
     } catch (e) {
       console.error(e);
